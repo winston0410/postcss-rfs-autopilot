@@ -1,18 +1,33 @@
-# PostCSS Rfs Autopilot
+# PostCSS RFS Autopilot
 
 [PostCSS] A plugin that automagically mark your CSS up with `rfs()` for [RFS](https://github.com/twbs/rfs).
 
 [PostCSS]: https://github.com/postcss/postcss
 
 ```css
+  /* Original Input */
 .foo {
-    /* Input example */
+    font-size: 4em;
 }
 ```
 
 ```css
+  /* After the transformation of RFS Autopilot but before RFS*/
 .foo {
-  /* Output example */
+  font-size: rfs(4em);
+}
+```
+
+```css
+  /* After the transformation of RFS Autopilot but before RFS*/
+.foo {
+  font-size: calc(1.525rem + 3.3vw);
+}
+
+@media (min-width: 1200px) {
+  .foo {
+    font-size: 4rem;
+  }
 }
 ```
 
