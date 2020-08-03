@@ -3,11 +3,12 @@ const {
   requiredParam
 } = require('./utilities/helper.js')
 
-module.exports = postcss.plugin('postcss-rfs-autopilot', ({ rulesToTransform, unitToTransform, selectorToIgnore}) => {
+module.exports = postcss.plugin('postcss-rfs-autopilot', ({ rulesToTransform, unitToTransform, rulesToIgnore, selectorToIgnore}) => {
   const options = {
     rulesToTransform: rulesToTransform || requiredParam('rulesToTransform'),
     unitToTransform: unitToTransform || requiredParam('unitToTransform'),
-    selectorToIgnore: selectorToIgnore
+    selectorToIgnore: selectorToIgnore,
+    rulesToIgnore: rulesToIgnore
   }
   // Work with options here
 
