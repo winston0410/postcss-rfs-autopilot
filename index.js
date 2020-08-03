@@ -17,6 +17,8 @@ module.exports = postcss.plugin('postcss-rfs-autopilot', ({ rulesToTransform, un
       options.rulesToTransform.forEach((desiredRuleToTransform) => {
         //Find all rules the user want to apply RFS to
         rule.walkDecls(desiredRuleToTransform, (decl) => {
+          //Ignore this rule if it is found in rulesToIgnore array
+
           //Check if rfs() has already applied to the value
           if( ! /^rfs/g.test(decl)){
             console.log('RFS declaration not found. Apply transformation here.')
