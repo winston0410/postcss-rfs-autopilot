@@ -1,6 +1,6 @@
 # PostCSS Rfs Autopilot
 
-[PostCSS] plugin Auto markup your CSS with rfs() for RFS.
+[PostCSS] A plugin that automagically mark your CSS up with `rfs()` for [RFS](https://github.com/twbs/rfs).
 
 [PostCSS]: https://github.com/postcss/postcss
 
@@ -15,6 +15,12 @@
   /* Output example */
 }
 ```
+
+## Problem
+
+[RFS](https://github.com/twbs/rfs) is a great unit resizing engine that helps you build responsive CSS layout, but writing `rfs()` everywhere manually is a pain in the ass.
+
+With this plugin, you just need to declare rules you want to apply `rfs()` to, and it will do the heavy lifting for you.
 
 ## Usage
 
