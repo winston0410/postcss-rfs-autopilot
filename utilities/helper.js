@@ -14,10 +14,6 @@ const isIncluded = (decl, inclusionRules) => {
   return inclusionRules.some(unit => RegExp(unit).test(decl));
 }
 
-const filterIdenticalValues = (sourceArray, arrayToCheckAgainst) => {
-  return sourceArray.filter(item => !arrayToCheckAgainst.includes(item))
-}
-
 const shouldBeTransformed = (decl, options) => {
 
   if (hasWrappedInRFS(decl)) {
