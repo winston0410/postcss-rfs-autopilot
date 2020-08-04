@@ -14,14 +14,14 @@ const isIncluded = (decl, inclusionRules) => {
   return inclusionRules.some(unit => RegExp(unit).test(decl));
 }
 
-const log = (msgType) => {
+const log = (msg, msgType) => {
   switch (msgType) {
     case 'success':
-
+      console.log(chalk.green(msg))
       break;
 
     case 'error':
-
+      console.log(chalk.red(msg))
       break;
     default:
 
@@ -40,12 +40,13 @@ const shouldBeTransformed = (decl, options) => {
 
   for(const [index, value] of validationValues.entries() ){
     if(! isIncluded(value, inclusionRules[index]) || isIncluded(value, exclusionRules[index]) ){
-      console.log(chalk.red(`${decl.parent.selector}{ ${decl.prop}: ${decl.value} } has been excluded`));
+      log(`${decl.parent.selector}{ ${decl.prop}: ${decl.value} } has been excluded`, 'error')
       return false
     }
   }
 
-  console.log(chalk.green(`${decl.parent.selector}{ ${decl.prop}: ${decl.value} } has been wrapped with rfs()`));
+  log(`${decl.parent.selector}{ ${decl.prop}: ${decl.value} } has been wrapped with rfs()`, 'success')
+  
   return true
 }
 
