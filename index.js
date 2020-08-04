@@ -1,31 +1,45 @@
 let postcss = require('postcss')
+
 const {
-  requiredParam
+  filterIdenticalValues,
+  hasWrappedInRFS,
+  isIncluded,
+  shouldBeTransformed
 } = require('./utilities/helper.js')
 
-module.exports = postcss.plugin('postcss-rfs-autopilot', ({ rulesToTransform, unitToTransform, rulesToIgnore, selectorToIgnore}) => {
+module.exports = postcss.plugin('postcss-rfs-autopilot', ({
+  includedRules,
+  excludedRules,
+  includedSelectors,
+  excludedSelectors,
+  includedUnits,
+  excludedUnits
+}) => {
   const options = {
-    rulesToTransform: rulesToTransform || requiredParam('rulesToTransform'),
-    unitToTransform: unitToTransform || requiredParam('unitToTransform'),
-    selectorToIgnore: selectorToIgnore,
-    rulesToIgnore: rulesToIgnore
+    includedRules: includedRules || [
+      '*'
+    ],
+    excludedRules: excludedRules || [],
+    includedSelectors: includedSelectors || [
+      '*'
+    ],
+    excludedSelectors: excludedSelectors || [],
+    includedUnits: includedUnits || [ 'px', 'rem' ],
+    excludedUnits: excludedUnits || []
   }
-  // Work with options here
+  //Filter includedRules here with excludedRules
+  // options.includedRules = filterIdenticalValues(options.includedRules, options.excludedRules)
+  // options.includedSelectors = filterIdenticalValues(options.includedSelectors, options.excludedSelectors)
+  // options.includedUnits = filterIdenticalValues(options.includedUnits, options.excludedUnits)
 
   return (root, result) => {
-    root.walkRules((rule) => {
-      options.rulesToTransform.forEach((desiredRuleToTransform) => {
-        //Find all rules the user want to apply RFS to
-        rule.walkDecls(desiredRuleToTransform, (decl) => {
-          //Ignore this rule if it is found in rulesToIgnore array
 
-          //Check if rfs() has already applied to the value
-          if( ! /^rfs/g.test(decl)){
-            console.log('RFS declaration not found. Apply transformation here.')
-            console.log(decl);
-          }
-        })
-      })
+    root.walkDecls((decl) => {
+
+      if ( shouldBeTransformed(decl, options) ) {
+        decl.value = `rfs(${decl.value})`
+      }
+
     })
   }
 })
