@@ -1,58 +1,51 @@
-const {
-  options
-} = require('../index.js')
-
-const chalk = require('chalk');
+const chalk = require('chalk')
 
 const hasWrappedInRFS = (decl) => /^rfs/g.test(decl.value)
 
 const isIncluded = (decl, inclusionRules) => {
   if (inclusionRules.includes('*')) {
-    return true;
+    return true
   }
 
-  return inclusionRules.some(unit => RegExp(unit).test(decl));
+  return inclusionRules.some(unit => RegExp(unit).test(decl))
 }
 
 const log = (msg, msgType) => {
   switch (msgType) {
     case 'success':
       console.log(chalk.green(msg))
-      break;
+      break
 
     case 'error':
       console.log(chalk.red(msg))
-      break;
+      break
     default:
-
   }
 }
 
 const shouldBeTransformed = (decl, options) => {
-
   if (hasWrappedInRFS(decl)) {
     return false
   }
 
-  const inclusionRules = [ options.includedRules, options.includedSelectors, options.includedUnits]
-  const exclusionRules = [ options.excludedRules, options.excludedSelectors, options.excludedUnits]
+  const inclusionRules = [options.includedRules, options.includedSelectors, options.includedUnits]
+  const exclusionRules = [options.excludedRules, options.excludedSelectors, options.excludedUnits]
   const validationValues = [decl.prop, decl.parent.selector, decl.value]
 
-  for(const [index, value] of validationValues.entries() ){
-    if(! isIncluded(value, inclusionRules[index]) || isIncluded(value, exclusionRules[index]) ){
+  for (const [index, value] of validationValues.entries()) {
+    if (!isIncluded(value, inclusionRules[index]) || isIncluded(value, exclusionRules[index])) {
       log(`${decl.parent.selector}{ ${decl.prop}: ${decl.value} } has been excluded`, 'error')
       return false
     }
   }
 
   log(`${decl.parent.selector}{ ${decl.prop}: ${decl.value} } has been wrapped with rfs()`, 'success')
-  
+
   return true
 }
 
 module.exports = {
   hasWrappedInRFS,
   isIncluded,
-  filterIdenticalValues,
   shouldBeTransformed
 }
