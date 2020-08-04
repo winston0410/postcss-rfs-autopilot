@@ -14,6 +14,20 @@ const isIncluded = (decl, inclusionRules) => {
   return inclusionRules.some(unit => RegExp(unit).test(decl));
 }
 
+const log = (msgType) => {
+  switch (msgType) {
+    case 'success':
+
+      break;
+
+    case 'error':
+
+      break;
+    default:
+
+  }
+}
+
 const shouldBeTransformed = (decl, options) => {
 
   if (hasWrappedInRFS(decl)) {
