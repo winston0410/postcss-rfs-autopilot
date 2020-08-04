@@ -10,7 +10,7 @@
     "rfs-auto-pilot"
   ],
   "scripts": {
-    "test": "jest && eslint .",
+    "test": "npx mocha",
     "build": "npx rollup -c;"
   },
   "author": "Hugo Sum <hugosum.dev@protonmail.com>",
