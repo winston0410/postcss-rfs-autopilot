@@ -16,6 +16,10 @@ const log = (msg, msgType) => {
       console.log(chalk.green(msg))
       break
 
+    case 'notice':
+      console.log(chalk.cyan(msg))
+      break
+
     case 'error':
       console.log(chalk.red(msg))
       break
@@ -25,6 +29,7 @@ const log = (msg, msgType) => {
 
 const shouldBeTransformed = (decl, options) => {
   if (hasWrappedInRFS(decl)) {
+    log(`${decl.parent.selector}{ ${decl.prop}: ${decl.value} } has already been wrapped in rfs()`, 'notice')
     return false
   }
 
