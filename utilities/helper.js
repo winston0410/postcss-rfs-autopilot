@@ -2,6 +2,8 @@ const {
   options
 } = require('../index.js')
 
+const chalk = require('chalk');
+
 const hasWrappedInRFS = (decl) => /^rfs/g.test(decl.value)
 
 const isIncluded = (decl, inclusionRules) => {
@@ -31,12 +33,12 @@ const shouldBeTransformed = (decl, options) => {
 
   for(const [index, value] of validationValues.entries() ){
     if(! isIncluded(value, inclusionRules[index]) || isIncluded(value, exclusionRules[index]) ){
-      console.log(`${decl.parent.selector}{ ${decl.prop}: ${decl.value} } has been excluded`);
+      console.log(chalk.red(`${decl.parent.selector}{ ${decl.prop}: ${decl.value} } has been excluded`));
       return false
     }
   }
 
-  console.log(`${decl.parent.selector}{ ${decl.prop}: ${decl.value} } has been wrapped with rfs()`);
+  console.log(chalk.green(`${decl.parent.selector}{ ${decl.prop}: ${decl.value} } has been wrapped with rfs()`));
   return true
 }
 
