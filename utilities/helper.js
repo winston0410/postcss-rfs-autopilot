@@ -2,12 +2,7 @@ const {
   options
 } = require('../index.js')
 
-const hasWrappedInRFS = (decl) => {
-  if (/^rfs/g.test(decl.value)) {
-    return true
-  }
-  return false
-}
+const hasWrappedInRFS = (decl) => /^rfs/g.test(decl.value)
 
 const isIncluded = (decl, inclusionRules) => {
   if (inclusionRules.includes('*')) {
