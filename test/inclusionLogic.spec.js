@@ -26,7 +26,10 @@ describe('Test shouldBeTransformed()', function () {
 
       const result = await postcss([
         postcssRfsAutopilot(options)
-      ]).process(css, { from: undefined }).then(result => result.css)
+      ]).process(css, { from: undefined }).then(result => {
+        console.log(result)
+        return result.css
+      })
 
       console.log(result)
       done()

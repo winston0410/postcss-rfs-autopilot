@@ -10,7 +10,8 @@ module.exports = postcss.plugin('postcss-rfs-autopilot', ({
   includedSelectors,
   excludedSelectors,
   includedUnits,
-  excludedUnits
+  excludedUnits,
+  silentConsole
 }) => {
   const options = {
     includedRules: includedRules || [
@@ -22,7 +23,8 @@ module.exports = postcss.plugin('postcss-rfs-autopilot', ({
     ],
     excludedSelectors: excludedSelectors || [],
     includedUnits: includedUnits || ['px', 'rem'],
-    excludedUnits: excludedUnits || []
+    excludedUnits: excludedUnits || [],
+    silentConsole: silentConsole || false
   }
   // Filter includedRules here with excludedRules
   // options.includedRules = filterIdenticalValues(options.includedRules, options.excludedRules)

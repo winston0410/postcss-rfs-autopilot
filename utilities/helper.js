@@ -10,7 +10,11 @@ const isIncluded = (decl, inclusionRules) => {
   return inclusionRules.some(unit => RegExp(unit).test(decl))
 }
 
-const log = (msg, msgType) => {
+const log = (msg, msgType, silentConsole) => {
+  if (silentConsole === true) {
+    return
+  }
+
   switch (msgType) {
     case 'success':
       console.log(chalk.green(msg))
@@ -29,7 +33,7 @@ const log = (msg, msgType) => {
 
 const shouldBeTransformed = (decl, options) => {
   if (hasWrappedInRFS(decl)) {
-    log(`${decl.parent.selector}{ ${decl.prop}: ${decl.value} } has already been wrapped in rfs()`, 'notice')
+    log(`${decl.parent.selector}{ ${decl.prop}: ${decl.value} } has already been wrapped in rfs()`, 'notice', options.silentConsole)
     return false
   }
 
@@ -39,12 +43,12 @@ const shouldBeTransformed = (decl, options) => {
 
   for (const [index, value] of validationValues.entries()) {
     if (!isIncluded(value, inclusionRules[index]) || isIncluded(value, exclusionRules[index])) {
-      log(`${decl.parent.selector}{ ${decl.prop}: ${decl.value} } has been excluded`, 'error')
+      log(`${decl.parent.selector}{ ${decl.prop}: ${decl.value} } has been excluded`, 'error', options.silentConsole)
       return false
     }
   }
 
-  log(`${decl.parent.selector}{ ${decl.prop}: ${decl.value} } has been wrapped with rfs()`, 'success')
+  log(`${decl.parent.selector}{ ${decl.prop}: ${decl.value} } has been wrapped with rfs()`, 'success', options.silentConsole)
 
   return true
 }
