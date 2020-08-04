@@ -11,10 +11,7 @@ const isIncluded = (decl, inclusionRules) => {
     return true;
   }
 
-  if (inclusionRules.some(unit => RegExp(unit).test(decl))) {
-    return true
-  }
-  return false
+  return inclusionRules.some(unit => RegExp(unit).test(decl));
 }
 
 const filterIdenticalValues = (sourceArray, arrayToCheckAgainst) => {
