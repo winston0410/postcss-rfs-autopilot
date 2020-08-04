@@ -1,0 +1,23 @@
+{
+  "env": {
+    "browser": true,
+    "jasmine": true,
+    "es2020": true
+  },
+  "plugins": [
+    "mocha"
+  ],
+  "extends": [
+    "standard",
+    "plugin:mocha/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-unused-vars": 1,
+    "no-unreachable": 0,
+    "prefer-object-spread": 1
+  }
+}
