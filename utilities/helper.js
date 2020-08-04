@@ -32,8 +32,10 @@ const log = (msg, msgType, silentConsole) => {
 }
 
 const shouldBeTransformed = (decl, options) => {
+  const messageTemplate = `${decl.parent.selector}{ ${decl.prop}: ${decl.value} }`
+
   if (hasWrappedInRFS(decl)) {
-    log(`${decl.parent.selector}{ ${decl.prop}: ${decl.value} } has already been wrapped in rfs()`, 'notice', options.silentConsole)
+    log(`${messageTemplate} was already wrapped in rfs()`, 'notice', options.silentConsole)
     return false
   }
 
@@ -43,12 +45,12 @@ const shouldBeTransformed = (decl, options) => {
 
   for (const [index, value] of validationValues.entries()) {
     if (!isIncluded(value, inclusionRules[index]) || isIncluded(value, exclusionRules[index])) {
-      log(`${decl.parent.selector}{ ${decl.prop}: ${decl.value} } has been excluded`, 'error', options.silentConsole)
+      log(`${messageTemplate} has been excluded`, 'error', options.silentConsole)
       return false
     }
   }
 
-  log(`${decl.parent.selector}{ ${decl.prop}: ${decl.value} } has been wrapped with rfs()`, 'success', options.silentConsole)
+  log(`${messageTemplate} has been wrapped with rfs()`, 'success', options.silentConsole)
 
   return true
 }
