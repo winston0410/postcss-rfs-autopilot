@@ -17,7 +17,8 @@
   "license": "MIT",
   "repository": "winston0410/postcss-rfs-autopilot",
   "dependencies": {
-    "postcss": "^7.0.18"
+    "postcss": "^7.0.32",
+    "rfs": "^9.0.3"
   },
   "devDependencies": {
     "@logux/eslint-config": "^33.0.0",

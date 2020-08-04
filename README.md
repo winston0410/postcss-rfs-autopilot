@@ -1,5 +1,7 @@
 # PostCSS RFS Autopilot
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/ff984c8d9c6e4277723f/maintainability)](https://codeclimate.com/github/winston0410/postcss-rfs-autopilot/maintainability) [![Known Vulnerabilities](https://snyk.io/test/github/winston0410/postcss-rfs-autopilot/badge.svg?targetFile=package.json)](https://snyk.io/test/github/winston0410/postcss-rfs-autopilot?targetFile=package.json) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/5ce28bbbcc174bfdad1dabd6ab3c64f6)](https://www.codacy.com/manual/winston0410/postcss-rfs-autopilot?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=winston0410/postcss-rfs-autopilot&amp;utm_campaign=Badge_Grade)
+
 [PostCSS] A plugin that automagically mark your CSS up with `rfs()` for [RFS](https://github.com/twbs/rfs).
 
 [PostCSS]: https://github.com/postcss/postcss
@@ -37,11 +39,10 @@
 
 With this plugin, you just need to declare rules you want to apply `rfs()` to, and it will do the heavy-lifting for you.
 
-## Autopilot for RFS, what about freedom?
-
-There is no shortcut for freedom. As we Hong Kongers fighting for our freedom and our very existence, your support is crucial to us.  Check out [what you can do to fight with us]().
-
 ## Installation
+
+As this plugin is a PostCSS plugin, you need to install and set up PostCSS first before use it.
+If you haven't used PostCSS before, set it up according to [official docs](https://github.com/postcss/postcss#usage).
 
 Input this command in terminal and download this PostCSS plugin.
 
@@ -59,30 +60,106 @@ npm i rfs
 
 ```
 
-## Usage
+After you have installed this plugin, require it **before `RFS`** in your [PostCSS configuration files, or the place where you config PostCSS in your environment](https://github.com/postcss/postcss#usage)
 
-Check you project for existed PostCSS config: `postcss.config.js`
-in the project root, `"postcss"` section in `package.json`
-or `postcss` in bundle config.
+```javascript
+//postcss.config.js or other files you use to config PostCSS
 
-If you already use PostCSS, add the plugin to plugins list:
-
-As this plugin only adds `rfs()` to values of your CSS, you have to require it before `rfs` in order to make it useful. 
-
-```diff
 module.exports = {
   plugins: [
-+   require('postcss-rfs-autopilot'),
-    require('autoprefixer')
+    //Other plugins...
+    //You have to include this plugin before rfs
+    require('postcss-rfs-autopilot'),
+    require('rfs')
+  ]
+}
+
+```
+
+Now we will mark up all the values for you with `rfs()`:rocket::rocket::rocket:!
+
+If you want to include or exclude some values or selectors, you can pass a configuration object to this plugin like this:
+
+Check out our [API Reference](#api-reference) for configuration options.
+
+```javascript
+//postcss.config.js or other files you use to config PostCSS
+
+module.exports = {
+  plugins: [
+    //Other plugins...
+    //You have to include this plugin before rfs
+    require('postcss-rfs-autopilot')({
+      includedRules: [
+        '*'
+      ], //Rules you want to include, e.g. font-size
+      includedSelectors: [
+        'p #hello'
+      ], //Selectors you want to include,
+      includedUnits: [
+        'px', 'rem'
+      ], //Units you want to include, e.g. px.  Noted that RFS currently only works with px and rem
+      excludedRules: [], //Rules you want to exclude
+      excludedSelectors: [], //Selectors you want to exclude
+      excludedUnits: [] //Units you want to exclude
+      }),
+    require('rfs')
   ]
 }
 ```
 
-If you do not use PostCSS, add it according to [official docs]
-and set this plugin in settings.
+### Advanced
 
-[official docs]: https://github.com/postcss/postcss#usage
+Exclusion rules will have precedence over inclusion rules, which means that if a same rules is found in both `includedRules` and `excludedRules`, it will be excluded.
+
+If you want to include all for an option, pass in `"*"` as its value.
 
 ## API Reference
 
-TODO
+###`options.includedRules`
+
+Data type: `[Array]`
+
+Default value: `[ '*' ]`
+
+Description: Control which CSS rules you want this plugin wrap it up with `rfs()`, for example `font-size`
+
+###`options.includedSelectors`
+
+Data type: `[Array]`
+
+Default value: `[ '*' ]`
+
+Description: Control which CSS selectors you want this plugin wrap it up with `rfs()`, for example `p .free`
+
+###`options.includedUnits`
+
+Data type: `[Array]`
+
+Default value: `[ 'px', 'rem' ]`
+
+Description: Control which CSS units you want this plugin wrap it up with `rfs()`, for example `px`
+
+###`options.excludedRules`
+
+Data type: `[Array]`
+
+Default value: `[]`
+
+Description: Control which CSS rules you **do not** want this plugin wrap it up with `rfs()`, for example `font-size`
+
+###`options.includedSelectors`
+
+Data type: `[Array]`
+
+Default value: `[]`
+
+Description: Control which CSS selectors you **do not** want this plugin wrap it up with `rfs()`, for example `p .free`
+
+###`options.includedUnits`
+
+Data type: `[Array]`
+
+Default value: `[]`
+
+Description: Control which CSS units you **do not** want this plugin wrap it up with `rfs()`, for example `px`
