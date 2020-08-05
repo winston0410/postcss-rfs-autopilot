@@ -2,7 +2,7 @@
 
 # PostCSS RFS Autopilot
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/ff984c8d9c6e4277723f/maintainability)](https://codeclimate.com/github/winston0410/postcss-rfs-autopilot/maintainability) [![Known Vulnerabilities](https://snyk.io/test/github/winston0410/postcss-rfs-autopilot/badge.svg?targetFile=package.json)](https://snyk.io/test/github/winston0410/postcss-rfs-autopilot?targetFile=package.json) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/5ce28bbbcc174bfdad1dabd6ab3c64f6)](https://www.codacy.com/manual/winston0410/postcss-rfs-autopilot?utm_source=github.com&utm_medium=referral&utm_content=winston0410/postcss-rfs-autopilot&utm_campaign=Badge_Grade)
+[![Maintainability](https://api.codeclimate.com/v1/badges/ff984c8d9c6e4277723f/maintainability)](https://codeclimate.com/github/winston0410/postcss-rfs-autopilot/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/ff984c8d9c6e4277723f/test_coverage)](https://codeclimate.com/github/winston0410/postcss-rfs-autopilot/test_coverage) [![Known Vulnerabilities](https://snyk.io/test/github/winston0410/postcss-rfs-autopilot/badge.svg?targetFile=package.json)](https://snyk.io/test/github/winston0410/postcss-rfs-autopilot?targetFile=package.json) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/5ce28bbbcc174bfdad1dabd6ab3c64f6)](https://www.codacy.com/manual/winston0410/postcss-rfs-autopilot?utm_source=github.com&utm_medium=referral&utm_content=winston0410/postcss-rfs-autopilot&utm_campaign=Badge_Grade)
 
 [PostCSS] A plugin that automagically mark your CSS up with `rfs()` for [RFS](https://github.com/twbs/rfs).
 
