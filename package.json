@@ -25,6 +25,7 @@
     "@rollup/plugin-commonjs": "^14.0.0",
     "@rollup/plugin-node-resolve": "^8.4.0",
     "chai": "^4.2.0",
+    "chai-match": "^1.1.1",
     "chalk": "^4.1.0",
     "eslint": "^7.5.0",
     "eslint-config-standard": "^14.1.1",
