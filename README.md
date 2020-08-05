@@ -1,3 +1,5 @@
+![PostCSS RFS Autopilot terminal screenshot](https://github.com/winston0410/postcss-rfs-autopilot/blob/master/postcss-rsf-autopilot-example.png?raw=true)
+
 # PostCSS RFS Autopilot
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/ff984c8d9c6e4277723f/maintainability)](https://codeclimate.com/github/winston0410/postcss-rfs-autopilot/maintainability) [![Known Vulnerabilities](https://snyk.io/test/github/winston0410/postcss-rfs-autopilot/badge.svg?targetFile=package.json)](https://snyk.io/test/github/winston0410/postcss-rfs-autopilot?targetFile=package.json) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/5ce28bbbcc174bfdad1dabd6ab3c64f6)](https://www.codacy.com/manual/winston0410/postcss-rfs-autopilot?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=winston0410/postcss-rfs-autopilot&amp;utm_campaign=Badge_Grade)
