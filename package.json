@@ -1,6 +1,6 @@
 {
   "name": "postcss-rfs-autopilot",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A PostCSS plugin that will automagically mark your CSS up with rfs() for RFS",
   "keywords": [
     "postcss",
