@@ -5,10 +5,10 @@ const chai = require('chai')
 const expect = chai.expect
 chai.use(require('chai-match'))
 
-describe('Test shouldBeTransformed()', function () {
+describe('Test shouldBeTransformed()', () => {
   let css, beforeTransformation, afterTransformation
 
-  beforeEach(function () {
+  beforeEach(() => {
     css = `p #hello{
       font-size: 18px;
       margin: rfs(10rem);
@@ -32,8 +32,8 @@ describe('Test shouldBeTransformed()', function () {
       })
   })
 
-  describe('if a value is already wrapped in rfs()', function () {
-    it('should not be transformed', async function () {
+  describe('if a value is already wrapped in rfs()', () => {
+    it('should not be transformed', async () => {
       const options = {
 
       }
@@ -59,8 +59,8 @@ describe('Test shouldBeTransformed()', function () {
     })
   })
 
-  describe('if the unit of a value is not included in includedUnits', function () {
-    it('should not be transformed', async function () {
+  describe('if the unit of a value is not included in includedUnits', () => {
+    it('should not be transformed', async () => {
       const options = {
         includedUnits: ['rem']
       }
@@ -86,8 +86,8 @@ describe('Test shouldBeTransformed()', function () {
     })
   })
 
-  describe('if the unit of a value is included in excludedUnits', function () {
-    it('should not be transformed', async function () {
+  describe('if the unit of a value is included in excludedUnits', () => {
+    it('should not be transformed', async () => {
       const options = {
         excludedUnits: ['px']
       }
@@ -113,8 +113,8 @@ describe('Test shouldBeTransformed()', function () {
     })
   })
 
-  describe('if the unit of a value is included in includedUnits and excludedUnits', function () {
-    it('should not be transformed', async function () {
+  describe('if the unit of a value is included in includedUnits and excludedUnits', () => {
+    it('should not be transformed', async () => {
       const options = {
         includedUnits: ['px'],
         excludedUnits: ['px']
