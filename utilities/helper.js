@@ -35,7 +35,6 @@ const messageTemplate = decl => `${decl.parent.selector}{ ${decl.prop}: ${decl.v
 const ifAllFalse = (...conditions) => (decl, options) => (endIndex => conditions.reduce((acc, curr, i, arr) => {
   const condition = curr(decl, options) || !acc
   condition && arr.splice(i) // acts like break by shorten this array
-  console.log(`condition_${i}`)
   !condition && i + 1 === endIndex && log(`${messageTemplate(decl)} has been wrapped with rfs()`, 'success', options.silentConsole) // log success message when reach to the end
   return !condition
 }, true))(conditions.length)
