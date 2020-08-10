@@ -5,10 +5,10 @@ const chai = require('chai')
 const expect = chai.expect
 chai.use(require('chai-match'))
 
-describe('Test shouldBeTransformed()', () => {
+describe('Test shouldBeTransformed()', function () {
   let css, beforeTransformation, afterTransformation
 
-  beforeEach(() => {
+  beforeEach(function () {
     css = `p #hello{
       font-size: 18px;
       margin: rfs(10rem);
@@ -23,7 +23,7 @@ describe('Test shouldBeTransformed()', () => {
 
     postcss
       .parse(css, { from: undefined })
-      .walkDecls((decl) => {
+      .walkDecls(function (decl) {
         beforeTransformation.push({
           selector: decl.parent.selector,
           prop: decl.prop,
@@ -32,8 +32,8 @@ describe('Test shouldBeTransformed()', () => {
       })
   })
 
-  describe('if a value is already wrapped in rfs()', () => {
-    it('should not be transformed', async () => {
+  describe('if a value is already wrapped in rfs()', function () {
+    it('should not be transformed', async function () {
       const options = {
 
       }
@@ -41,8 +41,8 @@ describe('Test shouldBeTransformed()', () => {
       await postcss([
         postcssRfsAutopilot(options)
       ])
-        .process(css, { from: undefined }).then(result => {
-          result.root.walkDecls((decl) => {
+        .process(css, { from: undefined }).then(function (result) {
+          result.root.walkDecls(function (decl) {
             afterTransformation.push({
               selector: decl.parent.selector,
               prop: decl.prop,
@@ -51,7 +51,7 @@ describe('Test shouldBeTransformed()', () => {
           })
         })
 
-      beforeTransformation.forEach((decl, index) => {
+      beforeTransformation.forEach(function (decl, index) {
         if (/^rfs/g.test(decl.value)) {
           expect(decl.value).to.equal(afterTransformation[index].value)
         }
@@ -59,8 +59,8 @@ describe('Test shouldBeTransformed()', () => {
     })
   })
 
-  describe('if the unit of a value is not included in includedUnits', () => {
-    it('should not be transformed', async () => {
+  describe('if the unit of a value is not included in includedUnits', function () {
+    it('should not be transformed', async function () {
       const options = {
         includedUnits: ['rem']
       }
@@ -68,8 +68,8 @@ describe('Test shouldBeTransformed()', () => {
       await postcss([
         postcssRfsAutopilot(options)
       ])
-        .process(css, { from: undefined }).then(result => {
-          result.root.walkDecls((decl) => {
+        .process(css, { from: undefined }).then(function (result) {
+          result.root.walkDecls(function (decl) {
             afterTransformation.push({
               selector: decl.parent.selector,
               prop: decl.prop,
@@ -78,7 +78,7 @@ describe('Test shouldBeTransformed()', () => {
           })
         })
 
-      beforeTransformation.forEach((decl, index) => {
+      beforeTransformation.forEach(function (decl, index) {
         if (!/rem/g.test(decl.value)) {
           expect(afterTransformation[index].value).to.not.match(/^rfs/g)
         }
@@ -86,8 +86,8 @@ describe('Test shouldBeTransformed()', () => {
     })
   })
 
-  describe('if the unit of a value is included in excludedUnits', () => {
-    it('should not be transformed', async () => {
+  describe('if the unit of a value is included in excludedUnits', function () {
+    it('should not be transformed', async function () {
       const options = {
         excludedUnits: ['px']
       }
@@ -95,8 +95,8 @@ describe('Test shouldBeTransformed()', () => {
       await postcss([
         postcssRfsAutopilot(options)
       ])
-        .process(css, { from: undefined }).then(result => {
-          result.root.walkDecls((decl) => {
+        .process(css, { from: undefined }).then(function (result) {
+          result.root.walkDecls(function (decl) {
             afterTransformation.push({
               selector: decl.parent.selector,
               prop: decl.prop,
@@ -105,7 +105,7 @@ describe('Test shouldBeTransformed()', () => {
           })
         })
 
-      beforeTransformation.forEach((decl, index) => {
+      beforeTransformation.forEach(function (decl, index) {
         if (/px/g.test(decl.value)) {
           expect(afterTransformation[index].value).to.not.match(/^rfs/g)
         }
@@ -113,8 +113,8 @@ describe('Test shouldBeTransformed()', () => {
     })
   })
 
-  describe('if the unit of a value is included in includedUnits and excludedUnits', () => {
-    it('should not be transformed', async () => {
+  describe('if the unit of a value is included in includedUnits and excludedUnits', function () {
+    it('should not be transformed', async function () {
       const options = {
         includedUnits: ['px'],
         excludedUnits: ['px']
@@ -123,8 +123,8 @@ describe('Test shouldBeTransformed()', () => {
       await postcss([
         postcssRfsAutopilot(options)
       ])
-        .process(css, { from: undefined }).then(result => {
-          result.root.walkDecls((decl) => {
+        .process(css, { from: undefined }).then(function (result) {
+          result.root.walkDecls(function (decl) {
             afterTransformation.push({
               selector: decl.parent.selector,
               prop: decl.prop,
@@ -133,7 +133,7 @@ describe('Test shouldBeTransformed()', () => {
           })
         })
 
-      beforeTransformation.forEach((decl, index) => {
+      beforeTransformation.forEach(function (decl, index) {
         if (/px/g.test(decl.value)) {
           expect(afterTransformation[index].value).to.not.match(/^rfs/g)
         }
