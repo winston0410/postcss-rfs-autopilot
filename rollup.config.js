@@ -38,8 +38,7 @@ export default [{
         ecma: 2019
       })
     ]
-  },
-],
+  }],
   plugins: [
     nodeResolve({}),
     commonjs({
