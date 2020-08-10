@@ -4,6 +4,7 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/5f395780019e3ba34cb0/maintainability)](https://codeclimate.com/github/ych605/postcss-rfs-autopilot/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/5f395780019e3ba34cb0/test_coverage)](https://codeclimate.com/github/ych605/postcss-rfs-autopilot/test_coverage)
+[![Build Status](https://travis-ci.com/ych605/postcss-rfs-autopilot.svg?branch=master)](https://travis-ci.com/ych605/postcss-rfs-autopilot)
 [![Known Vulnerabilities](https://snyk.io/test/github/ych605/postcss-rfs-autopilot/badge.svg?targetFile=package.json)](https://snyk.io/test/github/ych605/postcss-rfs-autopilot?targetFile=package.json)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4950189eafa94285a9ed8f1d1e0aef44)](https://app.codacy.com/manual/ych605/postcss-rfs-autopilot?utm_source=github.com&utm_medium=referral&utm_content=ych605/postcss-rfs-autopilot&utm_campaign=Badge_Grade_Dashboard)
 
