@@ -5,8 +5,8 @@ const {
 } = require('./utilities/helper.js')
 
 module.exports = postcss.plugin('postcss-rfs-autopilot', ({
-  includedRules = ['*'],
-  excludedRules = [],
+  includedProps = ['*'],
+  excludedProps = [],
   includedSelectors = ['*'],
   excludedSelectors = [],
   includedUnits = ['px', 'rem'],
@@ -14,18 +14,14 @@ module.exports = postcss.plugin('postcss-rfs-autopilot', ({
   silentConsole = false
 } = {}) => {
   const options = {
-    includedRules,
-    excludedRules,
+    includedProps,
+    excludedProps,
     includedSelectors,
     excludedSelectors,
     includedUnits,
     excludedUnits,
     silentConsole
   }
-  // Filter includedRules here with excludedRules
-  // options.includedRules = filterIdenticalValues(options.includedRules, options.excludedRules)
-  // options.includedSelectors = filterIdenticalValues(options.includedSelectors, options.excludedSelectors)
-  // options.includedUnits = filterIdenticalValues(options.includedUnits, options.excludedUnits)
 
   return (root, result) => {
     root.walkDecls((decl) => {

@@ -1,16 +1,21 @@
 const chalk = require('chalk')
 
 const chalkTypes = {
-  success: 'green',
-  notice: 'cyan',
-  error: 'red'
+  success: chalk.green,
+  notice: chalk.cyan,
+  error: chalk.red
 }
 
-const log = (msg, msgType, silentConsole) => !silentConsole && console.log(chalk[chalkTypes[msgType]] ? chalk[chalkTypes[msgType]](msg) : msg)
+const log = (msg, msgType, silentConsole) => !silentConsole && console.log(chalkTypes[msgType] ? chalkTypes[msgType](msg) : msg)
 
-const getProp = o => (...props) => props.reduce((acc, curr) => acc ? acc[curr] : undefined, o)
+const getProp = o => props => props.reduce((acc, curr) => acc ? acc[curr] : undefined, o)
 
 const or = (...conditions) => conditions.reduce((acc, curr) => acc || curr)
+
+const logIfTrue = func => (msg, type) => (decl, options) => ((condition) => {
+  condition && log(msg, type, options.silentConsole)
+  return condition
+})(func(decl, options))
 
 const hasWrappedInRFS = decl => /^rfs/g.test(decl.value)
 
@@ -25,11 +30,6 @@ const checkRules = (...validationProp) => (...inclusionProp) => (...exclusionPro
   checkExclusionRules(decl, options)(validationProp)(exclusionProp)
 )
 
-const logIfTrue = func => (msg, type) => (decl, options) => ((condition) => {
-  condition && log(msg, type, options.silentConsole)
-  return condition
-})(func(decl, options))
-
 const messageTemplate = decl => `${decl.parent.selector}{ ${decl.prop}: ${decl.value} }`
 
 const ifAllFalse = (...conditions) => (decl, options) => (endIndex => conditions.reduce((acc, curr, i, arr) => {
@@ -39,11 +39,17 @@ const ifAllFalse = (...conditions) => (decl, options) => (endIndex => conditions
   return !condition
 }, true))(conditions.length)
 
+const checkPropRules = checkRules('prop')('includedProps')('excludedProps')
+
+const checkSelectorRules = checkRules('parent', 'selector')('includedSelectors')('excludedSelectors')
+
+const checkValueRules = checkRules('value')('includedUnits')('excludedUnits')
+
 const shouldBeTransformed = (decl, options) => ifAllFalse(
   logIfTrue(hasWrappedInRFS)(`${messageTemplate(decl)} was already wrapped in rfs()`, 'notice'),
-  logIfTrue(checkRules('prop')('includedRules')('excludedRules'))(`${messageTemplate(decl)} has been excluded`, 'error'),
-  logIfTrue(checkRules('parent', 'selector')('includedSelectors')('excludedSelectors'))(`${messageTemplate(decl)} has been excluded`, 'error'),
-  logIfTrue(checkRules('value')('includedUnits')('excludedUnits'))(`${messageTemplate(decl)} has been excluded`, 'error')
+  logIfTrue(checkPropRules)(`${messageTemplate(decl)} has been excluded`, 'error'),
+  logIfTrue(checkSelectorRules)(`${messageTemplate(decl)} has been excluded`, 'error'),
+  logIfTrue(checkValueRules)(`${messageTemplate(decl)} has been excluded`, 'error')
 )(decl, options)
 
 module.exports = {
