@@ -17,29 +17,35 @@
   "license": "MIT",
   "repository": "winston0410/postcss-rfs-autopilot",
   "dependencies": {
-    "postcss": "^7.0.32",
+    "postcss-sparrow": "^1.0.2",
+    "postcss-sparrow-props-filter": "^0.1.5",
+    "postcss-sparrow-values-filter": "^0.1.3",
     "rfs": "^9.0.3"
   },
+  "peerDependencies": {
+    "postcss": "^8.1.0"
+  },
   "devDependencies": {
-    "@logux/eslint-config": "^33.0.0",
-    "@rollup/plugin-commonjs": "^14.0.0",
-    "@rollup/plugin-node-resolve": "^8.4.0",
+    "postcss": "^8.1.0",
+    "@logux/eslint-config": "^40.0.5",
+    "@rollup/plugin-commonjs": "^15.1.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
     "chai": "^4.2.0",
     "chai-match": "^1.1.1",
     "chalk": "^4.1.0",
-    "eslint": "^7.5.0",
+    "eslint": "^7.10.0",
     "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-mocha": "^7.0.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-mocha": "^8.0.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "mocha": "^8.1.0",
+    "mocha": "^8.1.3",
     "nyc": "^15.1.0",
-    "rollup": "^2.23.0",
+    "rollup": "^2.28.2",
     "rollup-plugin-node-polyfills": "^0.2.1",
     "rollup-plugin-peer-deps-external": "^2.2.3",
-    "rollup-plugin-terser": "^6.1.0"
+    "rollup-plugin-terser": "^7.0.2"
   },
   "eslintConfig": {
     "extends": "eslint-config-postcss"
