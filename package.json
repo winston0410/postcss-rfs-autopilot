@@ -15,7 +15,8 @@
   ],
   "scripts": {
     "test": "npx nyc npx mocha",
-    "build": "npx rollup -c;"
+    "build": "npx rollup -c;",
+    "prepublish": "npm run build"
   },
   "author": "Hugo Sum <hugosum.dev@protonmail.com>",
   "license": "MIT",
