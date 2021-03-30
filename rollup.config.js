@@ -43,7 +43,7 @@ export default [{
   plugins: [
     nodeResolve({}),
     commonjs({
-      include: ['./src/**', 'node_modules/**']
+      include: [ 'index.js', './utilities/helper.js', 'node_modules/**']
     })
   ]
 }]
